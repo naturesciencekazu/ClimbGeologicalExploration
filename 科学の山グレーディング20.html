@@ -1,0 +1,232 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>科学の山グレーディング20</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@600;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: 等高線図の凡例のような縦一列の山カード。左に技術度バッジ、右に体力度と分野評価 */
+:root{
+  --bg:#f3f5f2; --surface:#ffffff; --fg:#1c2622; --muted:#5d6b65; --line:#d5ddd8;
+  --pine:#2f5d4f; --pine-soft:#e3ece7; --warn:#a2461f; --warn-soft:#fbeee6;
+  --gA:#4f8a6a; --gB:#3b6f8f; --gC:#b07a1c; --gD:#a2461f; --gE:#6b2a4a;
+  --sS:#1f4a3e; --sA:#3a7a63; --sB:#8fb3a3; --sC:#cdd9d3; --sD:#e6ebe8;
+  --onS:#ffffff; --onB:#13241e;
+  --f-display:"Shippori Mincho B1","Hiragino Mincho ProN","Yu Mincho",serif;
+  --f-body:"Zen Kaku Gothic New","Hiragino Sans","Yu Gothic",system-ui,sans-serif;
+  --f-num:"IBM Plex Mono",ui-monospace,"SFMono-Regular",monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#121815; --surface:#1a221e; --fg:#e4ebe7; --muted:#9aaba3; --line:#2c3833;
+  --pine:#8cc7ae; --pine-soft:#1f2c26; --warn:#f0a07a; --warn-soft:#2e1d16;
+  --gA:#6fb08c; --gB:#6aa2c4; --gC:#d9a548; --gD:#e57f53; --gE:#c27aa0;
+  --sS:#8cc7ae; --sA:#5e9c84; --sB:#3d5f51; --sC:#2a3a33; --sD:#212b27;
+  --onS:#0f1a15; --onB:#e4ebe7; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#121815; --surface:#1a221e; --fg:#e4ebe7; --muted:#9aaba3; --line:#2c3833;
+  --pine:#8cc7ae; --pine-soft:#1f2c26; --warn:#f0a07a; --warn-soft:#2e1d16;
+  --gA:#6fb08c; --gB:#6aa2c4; --gC:#d9a548; --gD:#e57f53; --gE:#c27aa0;
+  --sS:#8cc7ae; --sA:#5e9c84; --sB:#3d5f51; --sC:#2a3a33; --sD:#212b27;
+  --onS:#0f1a15; --onB:#e4ebe7; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:15px;line-height:1.7;margin:0}
+.wrap{max-width:860px;margin:0 auto;padding-inline:16px;padding-block:28px 56px}
+h1{font-family:var(--f-display);font-weight:800;font-size:clamp(1.6rem,5vw,2.3rem);line-height:1.25;margin:0 0 .4em;text-wrap:balance}
+.lead{color:var(--muted);max-width:62ch;margin:0}
+.legend{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin:22px 0}
+.legend section{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:12px 14px;min-width:0}
+.legend h2{font-size:.78rem;letter-spacing:.08em;color:var(--pine);margin:0 0 6px;font-weight:700}
+.legend p{margin:0;font-size:.86rem;color:var(--muted)}
+.scale{display:flex;flex-wrap:wrap;gap:4px;margin-top:8px}
+.scale span{font-family:var(--f-num);font-size:.75rem;padding:1px 6px;border-radius:4px;color:#fff}
+.sortbar{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:8px 0 16px}
+.sortbar b{font-size:.8rem;color:var(--muted);font-weight:500;margin-right:4px}
+.sortbar button{font:inherit;font-size:.82rem;border:1px solid var(--line);background:var(--surface);color:var(--fg);border-radius:999px;padding:4px 12px;cursor:pointer}
+.sortbar button[aria-pressed="true"]{background:var(--pine);border-color:var(--pine);color:var(--bg)}
+.sortbar button:focus-visible{outline:2px solid var(--pine);outline-offset:2px}
+ol.list{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.m{display:grid;grid-template-columns:64px 1fr;gap:14px;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px}
+.badge{display:flex;flex-direction:column;align-items:center;gap:2px}
+.g{font-family:var(--f-num);font-weight:600;font-size:1.35rem;width:56px;text-align:center;border-radius:6px;padding:4px 0;color:#fff}
+.g.A{background:var(--gA)}.g.B{background:var(--gB)}.g.C{background:var(--gC)}.g.D{background:var(--gD)}.g.E{background:var(--gE)}
+.est{font-size:.66rem;color:var(--muted)}
+.rank{font-family:var(--f-num);font-size:.72rem;color:var(--muted)}
+.body{min-width:0}
+.top{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px}
+.name{font-family:var(--f-display);font-weight:800;font-size:1.2rem;margin:0}
+.route{font-size:.84rem;color:var(--muted)}
+.facts{display:flex;flex-wrap:wrap;gap:6px 14px;margin:6px 0 8px;font-size:.84rem}
+.facts .num{font-family:var(--f-num);font-weight:600;font-variant-numeric:tabular-nums}
+.bar{display:inline-block;width:70px;height:6px;border-radius:3px;background:var(--pine-soft);vertical-align:middle;margin-left:6px;position:relative;overflow:hidden}
+.bar i{position:absolute;inset:0 auto 0 0;background:var(--pine);border-radius:3px}
+.scores{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;margin-bottom:8px}
+.sc{display:flex;justify-content:space-between;align-items:center;gap:4px;border-radius:6px;padding:3px 8px;font-size:.78rem;background:var(--sD);color:var(--onB)}
+.sc b{font-family:var(--f-num);font-size:.95rem}
+.sc.S{background:var(--sS);color:var(--onS)}.sc.A{background:var(--sA);color:var(--onS)}.sc.B{background:var(--sB);color:var(--onB)}.sc.C{background:var(--sC);color:var(--onB)}
+.note{margin:0;font-size:.88rem}
+.status{margin:4px 0 0;font-size:.8rem;color:var(--muted)}
+.warn{margin-top:8px;background:var(--warn-soft);color:var(--warn);border-left:3px solid var(--warn);padding:6px 10px;font-size:.84rem;border-radius:0 6px 6px 0}
+.warn strong{font-weight:700}
+footer{margin-top:36px;font-size:.82rem;color:var(--muted)}
+footer h2{font-family:var(--f-display);font-size:1.05rem;color:var(--fg);margin:0 0 8px}
+footer ol{padding-left:1.4em;margin:0 0 16px}
+footer a{color:var(--pine);word-break:break-all}
+@media (max-width:520px){
+  .m{grid-template-columns:52px 1fr;gap:10px;padding:12px}
+  .g{width:48px;font-size:1.15rem}
+  .scores{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="wrap">
+  <h1>科学の山グレーディング20</h1>
+  <p class="lead">地学・化学・植物・雪氷の見どころがある関東・中部の20座を、技術的難易度の高い順に並べました。技術度と体力度は、各県の「山のグレーディング」の公表値をもとに細分化しています。</p>
+
+  <div class="legend">
+    <section>
+      <h2>技術度（10段階）</h2>
+      <p>公式のA〜Eをそれぞれ「−（帯の下限寄り）」「＋（上限寄り）」に二分した独自の推定です。＋は岩場・鎖・雪渓・浮石が長い、または連続するルートです。</p>
+      <div class="scale"><span style="background:var(--gA)">A−</span><span style="background:var(--gA)">A＋</span><span style="background:var(--gB)">B−</span><span style="background:var(--gB)">B＋</span><span style="background:var(--gC)">C−</span><span style="background:var(--gC)">C＋</span><span style="background:var(--gD)">D−</span><span style="background:var(--gD)">D＋</span><span style="background:var(--gE)">E−</span><span style="background:var(--gE)">E＋</span></div>
+    </section>
+    <section>
+      <h2>体力度（小数第1位）</h2>
+      <p>公式の算出式「ルート定数＝コースタイム(h)×1.8＋距離(km)×0.3＋累積登り(km)×10＋累積下り(km)×0.6」の値を10で割った数です。公式の体力度はこれを切り上げた整数です。</p>
+    </section>
+    <section>
+      <h2>分野評価 S〜D</h2>
+      <p>その分野で記事1本を書ける題材の濃さと、現地で実物を観察できるかで評価しました（筆者の判断）。</p>
+    </section>
+  </div>
+
+  <div class="sortbar" role="group" aria-label="並び替え">
+    <b>並び替え</b>
+    <button type="button" id="s-diff" data-k="diff" aria-pressed="true">難易度</button>
+    <button type="button" id="s-geo" data-k="geo" aria-pressed="false">地学</button>
+    <button type="button" id="s-chem" data-k="chem" aria-pressed="false">化学</button>
+    <button type="button" id="s-plant" data-k="plant" aria-pressed="false">植物</button>
+    <button type="button" id="s-ice" data-k="ice" aria-pressed="false">雪氷・気象</button>
+  </div>
+
+  <ol class="list" id="list"></ol>
+
+  <footer>
+    <h2>評価の前提と出典</h2>
+    <p>無雪期・好天時の評価です。＋／−の区分、分野評価、「推定」と付いた値は公式値ではありません。草津白根山と武甲山は公式グレーディングがないため、コースタイム・距離・標高差から同じ式で試算しました。出発前に各県の最新グレーディングと気象庁の火山情報を確認してください。</p>
+    <ol>
+      <li>十県一山域の日本百名山「登山ルートグレーディング」一覧表（群馬県）<br><a href="https://www.pref.gunma.jp/uploaded/attachment/1232.pdf" target="_blank" rel="noopener">https://www.pref.gunma.jp/uploaded/attachment/1232.pdf</a></li>
+      <li>岐阜県 山のグレーディング（体力度・ルート定数の算出式）<br><a href="https://www.pref.gifu.lg.jp/kurashi/bosai/sangaku/11115/grading.html" target="_blank" rel="noopener">https://www.pref.gifu.lg.jp/kurashi/bosai/sangaku/11115/grading.html</a></li>
+      <li>信州 山のグレーディング 一覧（2026年版、長野県）<br><a href="https://www.pref.nagano.lg.jp/kankoki/sangyo/kanko/documents/2026_grading_list.pdf" target="_blank" rel="noopener">https://www.pref.nagano.lg.jp/kankoki/sangyo/kanko/documents/2026_grading_list.pdf</a></li>
+      <li>気象庁 草津白根山の噴火警戒レベル引下げ（2026年5月15日）<br><a href="https://www.jma.go.jp/jma/press/2605/15a/20260515_kusatsu-shiranesan.html" target="_blank" rel="noopener">https://www.jma.go.jp/jma/press/2605/15a/20260515_kusatsu-shiranesan.html</a></li>
+      <li>長野県 長野県に関係する火山の活動状況<br><a href="https://www.pref.nagano.lg.jp/bosai/kurashi/shobo/bosai/bosai/kazankatsudou.html" target="_blank" rel="noopener">https://www.pref.nagano.lg.jp/bosai/kurashi/shobo/bosai/bosai/kazankatsudou.html</a></li>
+      <li>国土交通省 品木ダム水質管理所 河川の中和<br><a href="https://www.ktr.mlit.go.jp/sinaki/sinaki00017.html" target="_blank" rel="noopener">https://www.ktr.mlit.go.jp/sinaki/sinaki00017.html</a></li>
+      <li>環境省 尾瀬国立公園 見どころ<br><a href="https://www.env.go.jp/nature/nationalparks/list/oze/spot/" target="_blank" rel="noopener">https://www.env.go.jp/nature/nationalparks/list/oze/spot/</a></li>
+      <li>長野県環境保全研究所 みどりの声 63号（八方尾根）<br><a href="https://www.pref.nagano.lg.jp/kanken/johotekyo/midorinokoe/documents/63-06_07.pdf" target="_blank" rel="noopener">https://www.pref.nagano.lg.jp/kanken/johotekyo/midorinokoe/documents/63-06_07.pdf</a></li>
+      <li>国土交通省 仙丈ヶ岳 解説文<br><a href="https://www.mlit.go.jp/tagengo-db/common/001925673.docx" target="_blank" rel="noopener">https://www.mlit.go.jp/tagengo-db/common/001925673.docx</a></li>
+      <li>立山カルデラ砂防博物館 御前沢雪渓の氷体の流動観測（日本地球惑星科学連合 2011）<br><a href="https://www2.jpgu.org/meeting/2011/yokou/ACC028-13.pdf" target="_blank" rel="noopener">https://www2.jpgu.org/meeting/2011/yokou/ACC028-13.pdf</a></li>
+      <li>ジオパーク秩父 パンフレット<br><a href="https://www.chichibu-geo.com/wp-content/themes/geo/images/publication/pamphlet/JP-4-5.pdf" target="_blank" rel="noopener">https://www.chichibu-geo.com/wp-content/themes/geo/images/publication/pamphlet/JP-4-5.pdf</a></li>
+      <li>浅間山ジオパーク推進協議会（群馬県立自然史博物館）<br><a href="https://www.gmnh.pref.gunma.jp/wp-content/uploads/P13.pdf" target="_blank" rel="noopener">https://www.gmnh.pref.gunma.jp/wp-content/uploads/P13.pdf</a></li>
+    </ol>
+  </footer>
+</div>
+
+<script>
+const M = [
+ {n:"塩見岳",r:"鳥倉登山口 往復",of:"D",g:"D−",c:63.5,days:"1泊2日〜",geo:"A",chem:"B",plant:"B",ice:"C",
+  t:"南アルプスの付加体。海洋プレート由来の玄武岩質の岩（緑色岩）が山頂部をつくると考えられ、プレート運動の記録として読める山。",
+  w:"1泊以上・技術度D。山頂直下に岩場があり、落石と転落に注意。小屋は要予約、熊対策も必要。"},
+ {n:"白馬岳",r:"猿倉 往復（大雪渓）",of:"C",g:"C＋",c:39.9,days:"1泊2日",geo:"S",chem:"A",plant:"S",ice:"S",
+  t:"日本で最初に氷河地形が報告された山。蛇紋岩と大雪渓、国の天然記念物の高山植物帯がそろい、4分野すべてが高評価。",
+  w:"1泊以上・技術度C。大雪渓は落石が音もなく転がってくる。軽アイゼン携行、雪渓上で休まない。"},
+ {n:"赤岳・横岳・硫黄岳",r:"美濃戸 周回",of:"C",g:"C＋",c:37.9,days:"1泊推奨",geo:"A",chem:"A",plant:"A",ice:"C",
+  t:"硫黄岳は巨大な爆裂火口。横岳の岩稜ではコマクサなどの高山植物が見られ、硫黄と火山の化学に高山植物を合わせて書ける。",
+  w:"1泊推奨・技術度C。横岳は鎖・ハシゴが連続。日帰りにすると行動が長くなるので赤岳鉱泉か行者小屋泊が安全。"},
+ {n:"仙丈ヶ岳",r:"北沢峠 往復（小仙丈尾根）",of:"C",g:"C−",c:28.3,days:"日帰り〜1泊",geo:"S",chem:"C",plant:"A",ice:"A",
+  t:"藪沢・大仙丈沢・小仙丈沢の3つのカールとモレーン。氷河が削った地形をそのまま見られる教科書のような山。",
+  w:"1泊する場合は技術度C帯。北沢峠のバス最終便に注意。夜行バスで日帰りなら寝不足での転倒に注意。"},
+ {n:"北岳",r:"広河原 往復（草すべり）",of:"B",g:"B＋",c:41.0,days:"1泊推奨",geo:"A",chem:"B",plant:"S",ice:"B",
+  t:"日本第2位の高峰。石灰岩が混じる付加体の上に、固有種キタダケソウが咲く。岩石と植物の結びつきが記事の柱になる。",
+  status:"技術度はBだが体力度4超。1泊が現実的。"},
+ {n:"富士山",r:"富士宮口 往復",of:"B",g:"B＋",c:40.7,days:"1泊推奨",geo:"S",chem:"B",plant:"B",ice:"A",
+  t:"玄武岩の成層火山。高所の気圧と沸点、山頂の永久凍土、植生の垂直分布と題材が多い。",
+  status:"開山期（夏）のみ。高山病に注意。"},
+ {n:"唐松岳",r:"八方池山荘 往復（八方尾根）",of:"B",g:"B＋",c:25.4,est:true,days:"日帰り〜1泊",geo:"A",chem:"A",plant:"S",ice:"A",
+  t:"蛇紋岩のため低い標高に高山植物、高い標高にダケカンバ林が出る逆転現象。国設酸性雨観測所があり、氷河と認定された唐松沢も望める。",
+  status:"体力度は公式表で値を確認できず、標準コースタイムから試算。"},
+ {n:"御嶽山",r:"田の原 往復",of:"B",g:"B＋",c:21.0,days:"日帰り",geo:"S",chem:"A",plant:"B",ice:"C",
+  t:"2014年の水蒸気噴火の山。火山学と防災の教材として重要で、火口湖の二ノ池もある。",
+  status:"火山情報と山頂付近の立入規制を必ず確認。"},
+ {n:"焼岳",r:"新中の湯登山口 往復",of:"B",g:"B＋",c:20.0,days:"日帰り",geo:"S",chem:"A",plant:"B",ice:"D",
+  t:"北アルプス唯一の活発な活火山。山頂の噴気と硫黄、噴火で梓川がせき止められてできた大正池につながる。",
+  status:"噴気帯では火山ガスに注意。ガレ場あり。"},
+ {n:"谷川岳",r:"天神平 往復（天神尾根）",of:"B",g:"B＋",c:18.6,days:"日帰り",geo:"A",chem:"B",plant:"A",ice:"B",
+  t:"蛇紋岩の稜線に固有の植物。日本海側の豪雪と天候急変も山の性格をつくっている。",
+  status:"肩ノ小屋付近の岩場と急な霧に注意。"},
+ {n:"浅間山（前掛山）",r:"浅間登山口 往復",of:"B",g:"B−",c:39.0,days:"日帰り",geo:"S",chem:"B",plant:"B",ice:"D",
+  t:"天明噴火と鬼押出し溶岩。火山フロントの屈曲点にあり、日本列島の地質の交差点として書ける。",
+  status:"2026年5月22日に噴火警戒レベル1へ引下げ。前掛山までの立入可否は登山前に確認。"},
+ {n:"至仏山",r:"鳩待峠 往復",of:"B",g:"B−",c:18.7,days:"日帰り",geo:"A",chem:"A",plant:"S",ice:"C",
+  t:"山体が蛇紋岩。金属成分の多い土壌に適応した蛇紋岩植物と、低い森林限界が見どころ。",
+  status:"蛇紋岩は濡れるとよく滑る。山ノ鼻側は下り禁止。"},
+ {n:"日光白根山",r:"丸沼高原ロープウェイ 周回",of:"B",g:"B−",c:18.7,days:"日帰り",geo:"A",chem:"B",plant:"A",ice:"D",
+  t:"関東以北の最高峰で溶岩ドームの火山。シラネアオイの名の由来になった山。",
+  status:"ロープウェイの運行期間を確認。"},
+ {n:"武甲山",r:"一の鳥居 往復（表参道）",of:"—",g:"B−",c:18.2,est:true,days:"日帰り",geo:"S",chem:"S",plant:"B",ice:"D",
+  t:"南洋のサンゴ礁が運ばれてきた石灰岩の山。採掘とセメント焼成まで、炭酸カルシウムの化学を実物で語れる。",
+  status:"公式グレーディングなし。技術度・体力度とも試算。横瀬駅から歩くと往復約4km増。"},
+ {n:"美ヶ原",r:"三城牧場 周回",of:"B",g:"B−",c:17.5,days:"日帰り",geo:"A",chem:"C",plant:"B",ice:"C",
+  t:"溶岩がつくった広い台地。冬は霧氷が付く。",
+  status:"王ヶ頭へは車道沿いの別ルートもある。"},
+ {n:"立山（雄山）",r:"室堂ターミナル 往復",of:"B",g:"B−",c:14.3,days:"日帰り",geo:"S",chem:"S",plant:"A",ice:"S",
+  t:"日本で初めて現存氷河と認められた御前沢氷河と、噴気を上げる地獄谷。活火山と氷河が同じ山域にそろう。",
+  status:"地獄谷の遊歩道は火山ガスで閉鎖されることがある。アルペンルートの運行期間を確認。"},
+ {n:"赤城山（黒檜山）",r:"赤城神社〜駒ヶ岳〜大洞",of:"B",g:"B−",c:13.1,days:"日帰り",geo:"A",chem:"C",plant:"B",ice:"C",
+  t:"カルデラと火口湖の大沼。カルデラの形を歩いて実感できる。",
+  status:"黒檜山の登りは急な岩混じり。"},
+ {n:"乗鞍岳",r:"畳平 往復",of:"B",g:"B−",c:11.0,days:"日帰り",geo:"A",chem:"B",plant:"A",ice:"B",
+  t:"3000m級の火山に最も楽に立てる山。火口湖の権現池やコマクサが見られる。",
+  status:"マイカー規制あり。シャトルバスの運行期間を確認。"},
+ {n:"那須岳（茶臼岳）",r:"峠の茶屋 往復",of:"A",g:"A＋",c:11.0,days:"日帰り",geo:"A",chem:"A",plant:"C",ice:"C",
+  t:"溶岩ドームの活火山。山腹の噴気地帯で硫黄の析出を観察できる。",
+  status:"稜線は強風で有名。ガレ場と火山ガスに注意。"},
+ {n:"草津白根山",r:"レストハウス〜湯釜展望台",of:"—",g:"A−",c:2.6,est:true,days:"日帰り",geo:"A",chem:"S",plant:"B",ice:"D",
+  t:"pH1前後の強酸性の火口湖・湯釜。麓の品木ダムでは世界初の酸性河川中和事業が続いており、酸と中和の化学をまとめて書ける。",
+  status:"2026年5月15日に噴火警戒レベル1へ。湯釜火口からおおむね500m以内は立入規制。国道292号は11/15〜冬期閉鎖。"}
+];
+const GR = ["A−","A＋","B−","B＋","C−","C＋","D−","D＋","E−","E＋"];
+const SV = {S:5,A:4,B:3,C:2,D:1};
+const esc = s => s.replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+function card(m,i){
+  const lv = (m.c/10).toFixed(1);
+  const pct = Math.min(100, m.c);
+  const sc = [["地学","geo"],["化学","chem"],["植物","plant"],["雪氷・気象","ice"]]
+    .map(([l,k])=>`<span class="sc ${m[k]}">${l}<b>${m[k]}</b></span>`).join("");
+  return `<li class="m">
+    <div class="badge"><span class="rank">${String(i+1).padStart(2,"0")}</span><span class="g ${m.g[0]}">${m.g}</span><span class="est">公式 ${m.of}</span></div>
+    <div class="body">
+      <div class="top"><h3 class="name">${esc(m.n)}</h3><span class="route">${esc(m.r)}</span></div>
+      <div class="facts">
+        <span>体力度 <span class="num">${lv}</span>${m.est?'<span class="est">（試算）</span>':''}<span class="bar" aria-hidden="true"><i style="width:${pct}%"></i></span></span>
+        <span>ルート定数 <span class="num">${m.c.toFixed(1)}</span></span>
+        <span>${esc(m.days)}</span>
+      </div>
+      <div class="scores">${sc}</div>
+      <p class="note">${esc(m.t)}</p>
+      ${m.status?`<p class="status">${esc(m.status)}</p>`:''}
+      ${m.w?`<div class="warn"><strong>⚠ 注意：</strong>${esc(m.w)}</div>`:''}
+    </div></li>`;
+}
+function render(key){
+  const arr = M.slice();
+  if(key==="diff") arr.sort((a,b)=> GR.indexOf(b.g)-GR.indexOf(a.g) || b.c-a.c);
+  else arr.sort((a,b)=> SV[b[key]]-SV[a[key]] || GR.indexOf(b.g)-GR.indexOf(a.g) || b.c-a.c);
+  document.getElementById("list").innerHTML = arr.map(card).join("");
+  document.querySelectorAll(".sortbar button").forEach(btn=>btn.setAttribute("aria-pressed", btn.dataset.k===key ? "true":"false"));
+  try{ localStorage.setItem("sort", key); }catch(e){}
+}
+document.querySelectorAll(".sortbar button").forEach(btn=>btn.addEventListener("click",()=>render(btn.dataset.k)));
+let start = "diff";
+try{ const s = localStorage.getItem("sort"); if(s && document.querySelector(`[data-k="${s}"]`)) start = s; }catch(e){}
+render(start);
+</script>
+
+</body></html>
