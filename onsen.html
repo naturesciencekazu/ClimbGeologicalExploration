@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>科学と温泉</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@600;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<link rel="stylesheet" href="common.css">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}</style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="tabs" aria-label="ページ切替">
+    <a href="index.html">登山：科学の山</a>
+    <a href="onsen.html" aria-current="page">温泉：科学と温泉</a>
+    <a href="travel.html">旅行：科学と旅行</a>
+  </nav>
+  <h1>科学と温泉</h1>
+  <p class="lead">泉質・pH・湧き方に化学や地学の話題がある温泉を集めました。⛰は火山性の温泉、⛰がないものは近くに火山のない非火山性の温泉です。地域ボタンで全国・地方ごとに切り替えられます。初期表示は総合評価の高い順です。</p>
+
+  <div class="legend" style="grid-template-columns:1fr">
+    <section>
+      <h2>分野評価 S〜D と総合</h2>
+      <p>化学は泉質・pH・析出物など、地学は熱源や地下水の成り立ち、植物は周辺の植生、氷河・気象は豪雪や樹氷などの題材の濃さです。総合点の計算は登山ページと同じです。</p>
+    </section>
+  </div>
+
+  <div class="controls" id="controls"></div>
+  <ol class="list" id="list"></ol>
+
+  <footer>
+    <h2>評価の前提と出典</h2>
+    <p>泉質・pHは代表的な源泉の値で、宿や源泉ごとに異なります。分野評価・総合点は筆者の評価です。</p>
+    <ol>
+      <li>別府市 温泉百科 温泉データ（源泉数・湧出量・泉質、令和7年3月末）<br><a href="https://www.city.beppu.oita.jp/sangyou/onsen/detail4.html" target="_blank" rel="noopener">https://www.city.beppu.oita.jp/sangyou/onsen/detail4.html</a></li>
+      <li>環境省 鳴子温泉郷の概要<br><a href="https://www.env.go.jp/nature/onsen/summit/pdf/gaiyou3.pdf" target="_blank" rel="noopener">https://www.env.go.jp/nature/onsen/summit/pdf/gaiyou3.pdf</a></li>
+      <li>熊本県観光サイト 黒川温泉<br><a href="https://kumamoto.guide/yubijin/onsen/detail/1" target="_blank" rel="noopener">https://kumamoto.guide/yubijin/onsen/detail/1</a></li>
+      <li>東北観光推進機構 玉川温泉<br><a href="https://www.tohokukanko.jp/attractions/detail_1255.html" target="_blank" rel="noopener">https://www.tohokukanko.jp/attractions/detail_1255.html</a></li>
+      <li>国土交通省 関東地方整備局「活火山の草津白根山」（草津温泉の湧出量・pH）<br><a href="https://www.ktr.mlit.go.jp/ktr_content/content/000786706.pdf" target="_blank" rel="noopener">https://www.ktr.mlit.go.jp/ktr_content/content/000786706.pdf</a></li>
+      <li>JAMSTEC 2023年「分析化学」論文賞（大涌谷の黒たまご）<br><a href="https://www.jamstec.go.jp/biogeochem/pdf/Bunseki_Award_2023_Takano.pdf" target="_blank" rel="noopener">https://www.jamstec.go.jp/biogeochem/pdf/Bunseki_Award_2023_Takano.pdf</a></li>
+    </ol>
+  </footer>
+</div>
+
+<script>
+window.PAGE = {kind:"onsen", noGrade:true, items:[
+ {n:"玉川温泉",reg:"東北",bloom:"紅葉 10月上旬",vol:1,r:"秋田県仙北市",geo:"S",chem:"S",plant:"B",ice:"C",
+  facts:[["泉質","酸性泉（塩酸が主体）"],["pH","1.2"],["源泉","98℃・毎分約9,000L"]],
+  t:"源泉「大噴（おおぶき）」から強酸性の湯が湧く。微量のラジウムを含む北投石（ほくとうせき：国の特別天然記念物）ができる、世界でも珍しい場所。",
+  s:"冬期は国道341号が一部通行止め。自然研究路では火山ガスに注意。"},
+ {n:"草津温泉",reg:"関東",vol:1,r:"群馬県草津町",geo:"A",chem:"S",plant:"C",ice:"C",
+  facts:[["泉質","酸性泉など"],["pH","約2"],["自然湧出量","毎分32,300L以上"]],
+  t:"湯畑で湯の花（温泉成分の析出物）を採取する。熱い源泉を板でかき混ぜて冷ます湯もみは熱交換の実演。下流の品木ダムの中和事業と合わせて一本書ける。"},
+ {n:"万座温泉",reg:"関東",vol:1,r:"群馬県嬬恋村",geo:"A",chem:"A",plant:"B",ice:"B",
+  facts:[["泉質","硫黄泉・酸性泉"],["標高","約1,800m"]],
+  t:"空吹（からぶき）と呼ばれる噴気地帯から硫黄分の多い湯が湧く。湯の白濁は、細かい硫黄の粒子が光を散乱するためと考えられる。"},
+ {n:"蔵王温泉",reg:"東北",vol:1,r:"山形県山形市",geo:"A",chem:"S",plant:"B",ice:"S",
+  facts:[["泉質","酸性・含硫黄泉"],["pH","1台の強酸性"]],
+  t:"強酸性の硫黄泉。冬は樹氷観賞の拠点で、温泉と気象の両方を取材できる。"},
+ {n:"酸ヶ湯温泉",reg:"東北",bloom:"紅葉 10月上旬",vol:1,r:"青森県青森市（八甲田）",geo:"A",chem:"A",plant:"A",ice:"S",
+  facts:[["泉質","酸性・含硫黄泉"],["積雪","566cm（2013年2月）"]],
+  t:"八甲田山麓のヒバ千人風呂。アメダスの積雪記録566cmを観測したとされる豪雪地で、雪と温泉をテーマにできる。"},
+ {n:"別府温泉",reg:"九州",vol:1,r:"大分県別府市",geo:"S",chem:"S",plant:"C",ice:"C",
+  facts:[["泉質","10種類中7種類"],["源泉数","2,831"],["湧出量","毎分101,856L"]],
+  t:"源泉数・湧出量とも日本一とされる。地獄めぐりでは、酸化鉄を含む粘土で赤い「血の池地獄」、青い「海地獄」など、色の違いを化学で読める。明礬温泉では小屋で湯の花の結晶を育てる伝統技術が残る。"},
+ {n:"黒川温泉",reg:"九州",vol:1,r:"熊本県南小国町",geo:"B",chem:"A",plant:"B",ice:"C",
+  facts:[["泉質","7種類（掲示用泉質で整理）"]],
+  t:"狭い温泉地に泉質の違う源泉が集まり、入湯手形の湯めぐりで違いを比べられる。湯の色や匂いを成分表と照らし合わせるのが面白い。"},
+ {n:"鳴子温泉郷",reg:"東北",vol:1,r:"宮城県大崎市",geo:"A",chem:"S",plant:"B",ice:"B",
+  facts:[["泉質","10種類中7種類"],["源泉数","約370"]],
+  t:"5つの温泉地の総称で、硫黄泉の白、含鉄泉の茶色など湯の色が多彩。近くの潟沼は強酸性の火口湖。"},
+ {n:"登別温泉",reg:"北海道",vol:1,r:"北海道登別市",geo:"S",chem:"S",plant:"B",ice:"C",
+  facts:[["泉質","多種類（「温泉のデパート」）"]],
+  t:"爆裂火口跡の地獄谷から湧く。大湯沼は灰色の硫黄泉が溜まる沼で、沼底から高温の湯が噴き出している。"},
+ {n:"箱根温泉",reg:"関東",vol:1,r:"神奈川県箱根町",geo:"S",chem:"S",plant:"B",ice:"C",
+  facts:[["泉質","酸性泉〜アルカリ性単純温泉"]],
+  t:"大涌谷では噴気に水を加えて温泉をつくる「造成温泉」を各地へ配湯している。湯本のアルカリ性と大涌谷系の酸性という、同じ火山で正反対の泉質を比べられる。"},
+ {n:"有馬温泉",reg:"近畿",r:"兵庫県神戸市",geo:"S",chem:"S",plant:"C",ice:"D",
+  facts:[["金泉","含鉄ナトリウム塩化物強塩高温泉"],["銀泉","二酸化炭素泉・放射能泉"]],
+  t:"近くに火山がないのに高温の湯が湧く。沈み込むプレートから絞り出された水が起源と考えられ（有馬型）、地球科学の研究対象。金泉の赤茶色は空気に触れた鉄の酸化による。"},
+ {n:"長湯温泉",reg:"九州",vol:1,r:"大分県竹田市",geo:"A",chem:"S",plant:"B",ice:"C",
+  facts:[["泉質","二酸化炭素泉（炭酸泉）"]],
+  t:"湯に溶けた二酸化炭素が泡になって肌に付く日本有数の炭酸泉。気体は温度が低いほどよく溶けるため、ぬるい湯ほど泡が多いことを体感できる。"},
+ {n:"三朝温泉",reg:"中国",r:"鳥取県三朝町",geo:"A",chem:"S",plant:"C",ice:"C",
+  facts:[["泉質","放射能泉（ラドン）"]],
+  t:"ラドンはラジウムが壊れてできる放射性の気体。花崗岩にはウランなどが比較的多く含まれ、その割れ目を通った湯にラドンが溶け込むと考えられる。岡山大学の研究施設がある。"},
+ {n:"増富ラジウム温泉",reg:"中部",r:"山梨県北杜市",geo:"A",chem:"S",plant:"B",ice:"C",
+  facts:[["泉質","放射能泉・含二酸化炭素"]],
+  t:"瑞牆山（みずがきやま）の花崗岩地帯から湧く放射能泉。ぬるい源泉に長く浸かる入浴法で知られ、三朝温泉と同じく花崗岩とラドンの関係を説明できる。"},
+ {n:"白骨温泉",reg:"中部",vol:1,r:"長野県松本市",geo:"A",chem:"S",plant:"B",ice:"B",
+  facts:[["泉質","含硫黄-カルシウム・マグネシウム-炭酸水素塩泉"]],
+  t:"湧き出た直後は透明で、空気に触れて時間がたつと乳白色に変わる。湯船や樋には炭酸カルシウムなどの析出物が厚く付く。"},
+ {n:"松之山温泉",reg:"中部",r:"新潟県十日町市",geo:"S",chem:"A",plant:"B",ice:"A",
+  facts:[["泉質","ナトリウム・カルシウム-塩化物泉"]],
+  t:"地層に閉じ込められた太古の海水（化石海水）が地圧で押し出されて湧くと考えられる「ジオプレッシャー型」の温泉。ホウ素も多い。豪雪地帯。"},
+ {n:"伊香保温泉",reg:"関東",vol:1,r:"群馬県渋川市",geo:"A",chem:"S",plant:"B",ice:"C",
+  facts:[["黄金の湯","硫酸塩泉（含鉄）"],["白銀の湯","メタケイ酸の単純温泉"]],
+  t:"湧出時は無色の鉄分が空気で酸化され、茶褐色の「黄金の湯」になる。鉄(Ⅱ)から鉄(Ⅲ)への酸化を目で見られる。"},
+ {n:"奥日光湯元温泉",reg:"関東",bloom:"戦場ヶ原の花 6月〜7月／紅葉 10月上旬",vol:1,r:"栃木県日光市",geo:"A",chem:"A",plant:"A",ice:"B",
+  facts:[["泉質","含硫黄泉"]],
+  t:"湿原の源泉小屋から硫黄泉が湧く。湯ノ湖は三岳の溶岩が川をせき止めてできた湖で、戦場ヶ原の湿原も近い。"},
+ {n:"那須湯本温泉（鹿の湯）",reg:"関東",vol:1,r:"栃木県那須町",geo:"A",chem:"A",plant:"B",ice:"C",
+  facts:[["泉質","酸性・含硫黄泉"]],
+  t:"近くの殺生石周辺は硫化水素などの火山ガスで草木が育たず、ガスの毒性と温泉の関係を学べる。"},
+ {n:"高湯温泉",reg:"東北",vol:1,r:"福島県福島市（吾妻山）",geo:"A",chem:"A",plant:"B",ice:"B",
+  facts:[["泉質","酸性・含硫黄泉"]],
+  t:"吾妻山の東麓。硫化水素の匂いが強い乳白色の湯で、浄土平・吾妻小富士とセットで回れる。"},
+ {n:"岳温泉",reg:"東北",vol:1,r:"福島県二本松市（安達太良山）",geo:"A",chem:"A",plant:"B",ice:"B",
+  facts:[["泉質","酸性泉"],["引き湯","くろがね源泉から約8km"]],
+  t:"長い引き湯の途中で湯が空気に触れ、成分や温度がどう変わるかを考えると面白い。安達太良山登山の拠点。"},
+ {n:"乳頭温泉郷",reg:"東北",bloom:"ブナの新緑 5月下旬〜6月／紅葉 10月中旬",vol:1,r:"秋田県仙北市",geo:"A",chem:"A",plant:"A",ice:"A",
+  facts:[["泉質","宿ごとに異なる"]],
+  t:"ブナ林の中の7つの宿がそれぞれ別の源泉を持ち、白・黒・透明と湯の色が違う。豪雪地の雪見風呂も題材になる。"},
+ {n:"下呂温泉",reg:"中部",r:"岐阜県下呂市",geo:"B",chem:"A",plant:"C",ice:"C",
+  facts:[["泉質","アルカリ性単純温泉"],["pH","9台"]],
+  t:"アルカリ性の湯で肌がぬるぬるするのは、皮脂がアルカリと反応して石けんと同じ反応（けん化）が起きるためと考えられる。"},
+ {n:"湯河原温泉",reg:"関東",vol:1,r:"神奈川県湯河原町",geo:"A",chem:"B",plant:"B",ice:"C",
+  facts:[["泉質","塩化物泉・硫酸塩泉など"]],
+  t:"古い火山が侵食されてできた谷あいに湧く。幕山の柱状節理や六方の滝とセットで回れる。"},
+ {n:"雲仙温泉",reg:"九州",bloom:"ミヤマキリシマ 5月中旬〜下旬",vol:1,r:"長崎県雲仙市",geo:"S",chem:"A",plant:"A",ice:"A",
+  facts:[["泉質","酸性・含硫黄泉"]],
+  t:"雲仙地獄では噴気と硫黄の析出を遊歩道から観察できる。普賢岳登山の拠点で、冬は霧氷も見られる。"},
+ {n:"指宿温泉",reg:"九州",vol:1,r:"鹿児島県指宿市",geo:"S",chem:"B",plant:"B",ice:"C",
+  facts:[["泉質","ナトリウム-塩化物泉"]],
+  t:"海岸の砂の下を流れる温泉の熱で砂むし風呂をする。巨大カルデラ（阿多カルデラ）の縁にあたる地熱地帯と考えられる。"},
+ {n:"湯の峰温泉",reg:"近畿",r:"和歌山県田辺市",geo:"A",chem:"A",plant:"B",ice:"C",
+  facts:[["泉質","含硫黄-ナトリウム-炭酸水素塩・塩化物泉"]],
+  t:"世界遺産の「つぼ湯」は1日に7回湯の色が変わると伝えられ、温泉成分の酸化や析出が原因と考えられる。火山のない紀伊半島に湧く非火山性の高温泉。"}
+]};
+</script>
+<script src="app.js"></script>
+</body>
+</html>

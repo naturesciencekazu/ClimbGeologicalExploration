@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>科学と旅行</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@600;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<link rel="stylesheet" href="common.css">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}</style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="tabs" aria-label="ページ切替">
+    <a href="index.html">登山：科学の山</a>
+    <a href="onsen.html">温泉：科学と温泉</a>
+    <a href="travel.html" aria-current="page">旅行：科学と旅行</a>
+  </nav>
+  <h1>科学と旅行</h1>
+  <p class="lead">渓谷・鍾乳洞・海岸・火山の跡・博物館など、登山をしなくても科学の実物に会える場所です。⛰は火山に関係する場所です。地域ボタンで全国・地方ごとに切り替えられます。初期表示は総合評価の高い順です。</p>
+
+  <div class="legend" style="grid-template-columns:1fr">
+    <section>
+      <h2>分野評価 S〜D と総合</h2>
+      <p>4分野の題材の濃さを筆者が評価しました。総合点の計算は登山ページと同じです。</p>
+    </section>
+  </div>
+
+  <div class="controls" id="controls"></div>
+  <ol class="list" id="list"></ol>
+
+  <footer>
+    <h2>評価の前提と出典</h2>
+    <p>分野評価・総合点は筆者の評価です。火山の状況は2026年10月中旬時点で確認した情報です。</p>
+    <ol>
+      <li>気象庁 火山の活動状況（噴火警報発表中の火山）<br><a href="https://www.data.jma.go.jp/vois/data/tokyo/STOCK/activity_info/activity_info.html" target="_blank" rel="noopener">https://www.data.jma.go.jp/vois/data/tokyo/STOCK/activity_info/activity_info.html</a></li>
+      <li>国土交通省 品木ダム水質管理所 河川の中和<br><a href="https://www.ktr.mlit.go.jp/sinaki/sinaki00017.html" target="_blank" rel="noopener">https://www.ktr.mlit.go.jp/sinaki/sinaki00017.html</a></li>
+      <li>JAMSTEC 2023年「分析化学」論文賞（大涌谷の黒たまご）<br><a href="https://www.jamstec.go.jp/biogeochem/pdf/Bunseki_Award_2023_Takano.pdf" target="_blank" rel="noopener">https://www.jamstec.go.jp/biogeochem/pdf/Bunseki_Award_2023_Takano.pdf</a></li>
+      <li>浅間山ジオパーク推進協議会（群馬県立自然史博物館）<br><a href="https://www.gmnh.pref.gunma.jp/wp-content/uploads/P13.pdf" target="_blank" rel="noopener">https://www.gmnh.pref.gunma.jp/wp-content/uploads/P13.pdf</a></li>
+      <li>環境省 尾瀬国立公園 見どころ<br><a href="https://www.env.go.jp/nature/nationalparks/list/oze/spot/" target="_blank" rel="noopener">https://www.env.go.jp/nature/nationalparks/list/oze/spot/</a></li>
+    </ol>
+  </footer>
+</div>
+
+<script>
+window.PAGE = {kind:"travel", noGrade:true, items:[
+ {n:"屋久島（縄文杉）",reg:"九州",bloom:"ヤクシマシャクナゲ 5月下旬〜6月上旬",r:"鹿児島県屋久島町",geo:"A",chem:"C",plant:"S",ice:"S",
+  t:"花崗岩の島に「月に35日雨が降る」と言われるほどの雨が降る。豊富な雨と栄養の少ない花崗岩の土壌が、樹齢数千年のスギをゆっくり育てたと考えられる。",
+  s:"縄文杉までは往復約10時間の山歩き。"},
+ {n:"伊豆大島 地層大切断面",reg:"関東",vol:1,r:"東京都大島町",geo:"S",chem:"B",plant:"B",ice:"C",
+  t:"道路の切り通しに、噴火のたびに降り積もった火山灰や軽石の層が縞模様（通称バームクーヘン）になって長く続く。三原山とセットで回れる。",
+  s:"伊豆にある「名前を忘れた場所」の候補の一つ。"},
+ {n:"桜島",reg:"九州",vol:1,r:"鹿児島県鹿児島市",geo:"S",chem:"A",plant:"B",ice:"C",
+  t:"1914年の大正噴火で流れ出た溶岩が海峡を埋め、大隅半島と陸続きになった。溶岩原の上にクロマツが育っていく植生の回復も観察できる。",
+  s:"2026年10月12日時点で噴火警戒レベル3（入山規制）。展望所からの見学のみ。"},
+ {n:"阿蘇 草千里・大観峰",reg:"九州",bloom:"ミヤマキリシマ 5月下旬〜6月上旬／野焼き 3月",vol:1,r:"熊本県阿蘇市",geo:"S",chem:"A",plant:"A",ice:"B",
+  t:"東西約18km・南北約25kmのカルデラ。大観峰からは外輪山とカルデラの中の町並みを見下ろせる。草原は人が野焼きで維持してきた。",
+  s:"中岳火口は噴火警戒レベル2のため見学できない可能性が高い。"},
+ {n:"象潟・九十九島",reg:"東北",vol:1,r:"秋田県にかほ市",geo:"S",chem:"C",plant:"B",ice:"B",
+  t:"鳥海山の山体崩壊で流れ込んだ土砂の小山（流れ山）が、田んぼの中に島のように点在する。かつては海に浮かぶ島々で、1804年の象潟地震で土地が隆起して陸になった。"},
+ {n:"昭和新山",reg:"北海道",vol:1,r:"北海道壮瞥町",geo:"S",chem:"B",plant:"B",ice:"C",
+  t:"1943〜45年に麦畑が持ち上がってできた溶岩ドーム。郵便局長の三松正夫が成長を記録した「ミマツダイヤグラム」は火山学の貴重な記録。"},
+ {n:"有珠山 2000年噴火遺構",reg:"北海道",vol:1,r:"北海道洞爺湖町",geo:"S",chem:"B",plant:"B",ice:"C",
+  t:"2000年の噴火で壊れた道路や建物を残した遊歩道。地殻変動のすさまじさと、噴火予知による事前避難で犠牲者が出なかった防災の例を学べる。"},
+ {n:"龍泉洞",reg:"東北",r:"岩手県岩泉町",geo:"A",chem:"A",plant:"B",ice:"C",
+  t:"日本三大鍾乳洞の一つ。透明度の高い地底湖で知られる。"},
+ {n:"龍河洞",reg:"四国",r:"高知県香美市",geo:"A",chem:"A",plant:"B",ice:"C",
+  t:"日本三大鍾乳洞の一つ。弥生時代の土器が鍾乳石に取り込まれた「神の壺」は、鍾乳石が育つ速さを考える材料になる。"},
+ {n:"根尾谷断層",reg:"中部",r:"岐阜県本巣市",geo:"S",chem:"C",plant:"C",ice:"C",
+  t:"1891年の濃尾地震で地表に現れた断層崖（国の特別天然記念物）。地震断層観察館で、地下の断層の断面をそのまま見られる。"},
+ {n:"秋吉台・秋芳洞",reg:"中国",bloom:"山焼き 2月／草原の花 夏",r:"山口県美祢市",geo:"S",chem:"S",plant:"A",ice:"C",
+  t:"日本最大級のカルスト台地と鍾乳洞。CaCO₃＋CO₂＋H₂O ⇄ Ca(HCO₃)₂ の反応が右に進むと石灰岩が溶けて洞窟ができ、左に進むと鍾乳石が育つ。台地の草原は毎年の山焼きで保たれている。"},
+ {n:"裏磐梯・五色沼",reg:"東北",bloom:"新緑 5月下旬〜6月／紅葉 10月中旬〜下旬",vol:1,r:"福島県北塩原村",geo:"S",chem:"S",plant:"A",ice:"B",
+  t:"1888年の磐梯山噴火で生まれた湖沼群。沼ごとに青・緑・赤褐色と色が違い、水中の細かい粒子による光の散乱や、鉄などの成分の違いが原因と考えられている。"},
+ {n:"玄武洞",reg:"近畿",vol:1,r:"兵庫県豊岡市",geo:"S",chem:"B",plant:"C",ice:"C",
+  t:"「玄武岩」の名の由来になった柱状節理の洞。ここの岩石の磁気が現在と逆向きだったことから、松山基範が地磁気の逆転を発見した。"},
+ {n:"東尋坊",reg:"中部",vol:1,r:"福井県坂井市",geo:"S",chem:"B",plant:"C",ice:"B",
+  t:"輝石安山岩の柱状節理が続く断崖（国の天然記念物）。冬の日本海の荒波と強い季節風も観察できる。"},
+ {n:"糸魚川 フォッサマグナパーク",reg:"中部",r:"新潟県糸魚川市",geo:"S",chem:"A",plant:"C",ice:"C",
+  t:"糸魚川－静岡構造線の断層露頭を実際に見られる。近くの海岸ではヒスイ（ヒスイ輝石：NaAlSi₂O₆）を探せる。"},
+ {n:"鳥取砂丘",reg:"中国",r:"鳥取県鳥取市",geo:"A",chem:"B",plant:"B",ice:"S",
+  t:"中国山地の花崗岩が風化してできた砂が、川と海と風で運ばれてできた砂丘。風がつくる風紋や砂簾（されん）は気象の教材になる。"},
+ {n:"上高地・大正池",reg:"中部",bloom:"新緑 5月下旬〜6月／紅葉 10月中旬",vol:1,r:"長野県松本市",geo:"S",chem:"C",plant:"A",ice:"B",
+  t:"1915年の焼岳の噴火で梓川がせき止められてできた池。流れ込む土砂で池が少しずつ小さくなる変化も観察対象になる。"},
+ {n:"立山 雪の大谷",reg:"中部",vol:1,r:"富山県立山町",geo:"A",chem:"B",plant:"B",ice:"S",
+  t:"世界有数の豪雪地帯で、除雪した道路の両側に高い雪の壁ができる（例年4〜6月）。積もった雪の層は冬の天気の記録になる。"},
+ {n:"尾瀬ヶ原",reg:"関東",bloom:"ミズバショウ 5月下旬〜6月上旬／ニッコウキスゲ 7月中旬〜下旬",r:"群馬県片品村",geo:"A",chem:"B",plant:"S",ice:"A",
+  t:"本州最大の高層湿原。泥炭は1年に約1mmずつしか積もらないとされ、数千年分の植物の遺骸が層をなす。ミズバショウ、ニッコウキスゲ。"},
+ {n:"品木ダム（草津の中和事業）",reg:"関東",vol:1,r:"群馬県中之条町・草津町",geo:"A",chem:"S",plant:"C",ice:"C",
+  t:"強酸性の湯川に石灰を投入して中和する、世界初の酸性河川中和事業（1964年〜）。中和工場の見学やpH実験の体験ができる。"},
+ {n:"鬼押出し園",reg:"関東",vol:1,r:"群馬県嬬恋村",geo:"S",chem:"B",plant:"B",ice:"C",
+  t:"1783年の天明噴火で流れた溶岩の上を歩ける。溶岩の表面のでこぼこから、流れが固まっていく様子を想像できる。"},
+ {n:"吹割の滝",reg:"関東",vol:1,r:"群馬県沼田市",geo:"S",chem:"B",plant:"B",ice:"C",
+  t:"溶結凝灰岩（高温の火砕流が固まった岩）の割れ目に沿って川が削り込み、「東洋のナイアガラ」と呼ばれる滝になった。"},
+ {n:"城ヶ崎海岸",reg:"中部",vol:1,r:"静岡県伊東市",geo:"S",chem:"B",plant:"B",ice:"C",
+  t:"大室山から流れ出た溶岩が海に達し、波に削られてできた断崖。吊り橋から溶岩の断面を観察できる。",
+  s:"伊豆にある「名前を忘れた場所」の候補の一つ。"},
+ {n:"大室山",reg:"中部",bloom:"山焼き 2月／新緑 5月",vol:1,r:"静岡県伊東市",geo:"S",chem:"B",plant:"A",ice:"C",
+  t:"一度の噴火でできたスコリア丘（火山の噴出物が積もった丘）。毎年の山焼きで草原が保たれ、山頂の火口をリフトで上って一周できる。",
+  s:"徒歩での登山は禁止。伊豆にある「名前を忘れた場所」の候補の一つ。"},
+ {n:"浄蓮の滝",reg:"中部",vol:1,r:"静岡県伊豆市",geo:"A",chem:"C",plant:"B",ice:"C",
+  t:"玄武岩の溶岩にできた柱状節理の崖を落ちる滝。",s:"伊豆にある「名前を忘れた場所」の候補の一つ。"},
+ {n:"堂ヶ島・天窓洞",reg:"中部",vol:1,r:"静岡県西伊豆町",geo:"S",chem:"B",plant:"C",ice:"C",
+  t:"海底火山の噴出物が積もった地層を、波が削ってできた海食洞。洞窟の天井に穴が開いて光が差し込む。海底火山の地層の縞模様がよく見える。",
+  s:"伊豆にある「名前を忘れた場所」の候補の一つ。"},
+ {n:"龍宮窟",reg:"中部",vol:1,r:"静岡県下田市",geo:"A",chem:"C",plant:"C",ice:"C",
+  t:"天井が崩れた海食洞で、上から見るとハート形の穴に見える。",s:"伊豆にある「名前を忘れた場所」の候補の一つ。"},
+ {n:"富岳風穴・鳴沢氷穴",reg:"中部",bloom:"コケの森 6月〜7月",vol:1,r:"山梨県富士河口湖町・鳴沢村",geo:"S",chem:"B",plant:"A",ice:"S",
+  t:"富士山の溶岩流の中にできた溶岩洞窟。夏でも内部に氷が残り、かつては天然の冷蔵庫として使われた。周りの青木ヶ原樹海は溶岩の上に育った森。"},
+ {n:"忍野八海",reg:"中部",vol:1,r:"山梨県忍野村",geo:"A",chem:"A",plant:"B",ice:"B",
+  t:"富士山に降った雨や雪が溶岩の中を長い年月かけて通り、ろ過されて湧き出る湧水池。"},
+ {n:"日原鍾乳洞",reg:"関東",r:"東京都奥多摩町",geo:"A",chem:"A",plant:"B",ice:"B",
+  t:"関東最大級の鍾乳洞。洞内は一年中ほぼ一定の気温（約11℃）で、地中の温度が安定していることを体感できる。"},
+ {n:"華厳の滝・中禅寺湖",reg:"関東",vol:1,r:"栃木県日光市",geo:"A",chem:"C",plant:"B",ice:"B",
+  t:"男体山の溶岩がせき止めた中禅寺湖の水が、溶岩の崖を一気に落ちる滝。男体山登山とセットで回れる。"},
+ {n:"大谷資料館",reg:"関東",r:"栃木県宇都宮市",geo:"A",chem:"B",plant:"C",ice:"A",
+  t:"海底火山の噴出物が固まった大谷石（軽石凝灰岩）の地下採掘場跡。巨大な地下空間は一年中ひんやりしている。"},
+ {n:"大涌谷",reg:"関東",vol:1,r:"神奈川県箱根町",geo:"S",chem:"S",plant:"B",ice:"C",
+  t:"黒たまごの黒色の正体は硫化鉄ではなく、硫黄で架橋された高分子の有機物と考えられることを、当時中学生の著者らが論文で示した（2023年 分析化学論文賞）。"},
+ {n:"昇仙峡",reg:"中部",bloom:"紅葉 11月上旬〜中旬",r:"山梨県甲府市",geo:"S",chem:"A",plant:"B",ice:"C",
+  t:"花崗岩が川に削られた渓谷と、高さ約180mの岩峰・覚円峰。花崗岩の中で育った水晶が、甲府の水晶研磨・宝飾産業の起源になった。登山ページにも掲載。"},
+ {n:"橋立鍾乳洞",reg:"関東",r:"埼玉県秩父市",geo:"A",chem:"A",plant:"B",ice:"C",
+  t:"武甲山の石灰岩の裏側にある縦穴型の鍾乳洞。武甲山登山や武甲山資料館と組み合わせられる。"},
+ {n:"地質標本館",reg:"関東",r:"茨城県つくば市",geo:"S",chem:"A",plant:"C",ice:"C",
+  t:"産業技術総合研究所の地質の博物館。日本列島の地質の立体模型と岩石・鉱物標本がそろう。筑波山登山と組み合わせられる。"},
+ {n:"生命の星・地球博物館",reg:"関東",bloom:"通年（屋内）",r:"神奈川県小田原市",geo:"S",chem:"A",plant:"A",ice:"C",
+  t:"神奈川県立の自然史博物館。箱根火山の成り立ち、隕石や鉱物の展示が充実。箱根や矢倉岳に行く前に寄るのに向く。"},
+ {n:"長瀞 岩畳",reg:"関東",r:"埼玉県長瀞町",geo:"S",chem:"B",plant:"B",ice:"C",
+  t:"地下深くで高い圧力を受けてできた結晶片岩（三波川変成帯）の岩畳。地球内部の岩が地表に現れた「地球の窓」と呼ばれ、日本の地質学発祥の地の一つとされる。近くに埼玉県立自然の博物館。"}
+]};
+</script>
+<script src="app.js"></script>
+</body>
+</html>
